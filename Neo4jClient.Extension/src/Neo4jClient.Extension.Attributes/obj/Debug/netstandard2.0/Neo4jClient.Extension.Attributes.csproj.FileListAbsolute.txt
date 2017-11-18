@@ -1,0 +1,9 @@
+C:\Users\Rénald\Source\Repos\DotNetCore.VsCode\project\Neo4jClient.Extension\src\Neo4jClient.Extension.Attributes\bin\Debug\netstandard2.0\Neo4jClient.Extension.Attributes.deps.json
+C:\Users\Rénald\Source\Repos\DotNetCore.VsCode\project\Neo4jClient.Extension\src\Neo4jClient.Extension.Attributes\bin\Debug\netstandard2.0\Neo4jClient.Extension.Attributes.dll
+C:\Users\Rénald\Source\Repos\DotNetCore.VsCode\project\Neo4jClient.Extension\src\Neo4jClient.Extension.Attributes\bin\Debug\netstandard2.0\Neo4jClient.Extension.Attributes.pdb
+C:\Users\Rénald\Source\Repos\DotNetCore.VsCode\project\Neo4jClient.Extension\src\Neo4jClient.Extension.Attributes\obj\Debug\netstandard2.0\Neo4jClient.Extension.Attributes.csproj.CoreCompileInputs.cache
+C:\Users\Rénald\Source\Repos\DotNetCore.VsCode\project\Neo4jClient.Extension\src\Neo4jClient.Extension.Attributes\obj\Debug\netstandard2.0\Neo4jClient.Extension.Attributes.AssemblyInfoInputs.cache
+C:\Users\Rénald\Source\Repos\DotNetCore.VsCode\project\Neo4jClient.Extension\src\Neo4jClient.Extension.Attributes\obj\Debug\netstandard2.0\Neo4jClient.Extension.Attributes.AssemblyInfo.cs
+C:\Users\Rénald\Source\Repos\DotNetCore.VsCode\project\Neo4jClient.Extension\src\Neo4jClient.Extension.Attributes\obj\Debug\netstandard2.0\Neo4jClient.Extension.Attributes.dll
+C:\Users\Rénald\Source\Repos\DotNetCore.VsCode\project\Neo4jClient.Extension\src\Neo4jClient.Extension.Attributes\obj\Debug\netstandard2.0\Neo4jClient.Extension.Attributes.pdb
+C:\Users\Rénald\Source\Repos\DotNetCore.VsCode\project\Neo4jClient.Extension\src\Neo4jClient.Extension.Attributes\obj\Debug\netstandard2.0\Neo4jClient.Extension.Attributes.csprojResolveAssemblyReference.cache

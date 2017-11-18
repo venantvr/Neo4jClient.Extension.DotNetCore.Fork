@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
+    <PackageReference Include="Moq" Version="4.7.145" />
+    <PackageReference Include="Neo4jClient" Version="2.0.0.9" />
+    <PackageReference Include="NUnit" Version="3.9.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.4.0" />
+    <PackageReference Include="UnitsNet" Version="3.78.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Neo4jClient.Extension.Attributes\Neo4jClient.Extension.Attributes.csproj" />
+    <ProjectReference Include="..\..\src\Neo4jClient.Extension\Neo4jClient.Extension.csproj" />
+  </ItemGroup>
+</Project>
