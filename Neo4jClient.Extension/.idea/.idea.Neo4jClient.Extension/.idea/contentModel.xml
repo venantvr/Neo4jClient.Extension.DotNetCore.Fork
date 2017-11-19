@@ -108,6 +108,18 @@
             </e>
           </e>
         </e>
+        <e p="Neo4jClient.Extension.Test.ConsoleApplication" t="IncludeRecursive">
+          <e p="Neo4jClient.Extension.Test.ConsoleApplication.csproj" t="IncludeRecursive" />
+          <e p="Program.cs" t="Include" />
+          <e p="bin" t="ExcludeRecursive" />
+          <e p="obj" t="ExcludeRecursive">
+            <e p="Debug" t="Include">
+              <e p="netcoreapp2.0" t="Include">
+                <e p="Neo4jClient.Extension.Test.ConsoleApplication.AssemblyInfo.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+        </e>
         <e p="Neo4jClient.Extension.UnitTest" t="IncludeRecursive">
           <e p="CustomConverters" t="Include">
             <e p="AreaConverterFixture.cs" t="Include" />

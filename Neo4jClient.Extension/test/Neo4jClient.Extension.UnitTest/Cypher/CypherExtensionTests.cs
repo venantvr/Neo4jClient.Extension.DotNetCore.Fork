@@ -249,20 +249,25 @@ ON CREATE SET key = {
             //act
             var q = helper.Query.MergeEntity(model, mergeOverride: model.UseProperties(x => x.firstName));
 
-            Console.WriteLine(q.GetFormattedDebugText());
+            var formattedDebugText = q.GetFormattedDebugText();
+            
+            Console.WriteLine(formattedDebugText);
 
             //assert
             Assert.AreEqual(@"MERGE (cyphermodel:CypherModel {firstName:{
   firstName: ""Foo""
 }.firstName})
-ON MATCH SET cyphermodel.isLegend = false
-ON MATCH SET cyphermodel.answerToTheMeaningOfLifeAndEverything = 42
-ON CREATE SET cyphermodel = {
+ON MATCH
+SET cyphermodel.isLegend = false
+ON MATCH
+SET cyphermodel.answerToTheMeaningOfLifeAndEverything = 42
+ON CREATE
+SET cyphermodel = {
   firstName: ""Foo"",
   dateOfBirth: ""1981-04-01T00:00:00+00:00"",
   isLegend: false,
   answerToTheMeaningOfLifeAndEverything: 42
-}", q.GetFormattedDebugText());
+}", formattedDebugText);
         }
 
         [Test]
