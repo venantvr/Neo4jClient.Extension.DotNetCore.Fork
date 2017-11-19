@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>netcoreapp2.0</TargetFramework>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\src\Neo4jClient.Extension.Attributes\Neo4jClient.Extension.Attributes.csproj"/>
+        <ProjectReference Include="..\..\src\Neo4jClient.Extension\Neo4jClient.Extension.csproj"/>
+        <ProjectReference
+                Include="..\Neo4jClient.Extension.IntegrationTest\Neo4jClient.Extension.IntegrationTest.csproj"/>
+        <ProjectReference Include="..\Neo4jClient.Extension.Test.Common\Neo4jClient.Extension.Test.Common.csproj"/>
+        <ProjectReference Include="..\Neo4jClient.Extension.UnitTest\Neo4jClient.Extension.UnitTest.csproj"/>
+    </ItemGroup>
+</Project>
