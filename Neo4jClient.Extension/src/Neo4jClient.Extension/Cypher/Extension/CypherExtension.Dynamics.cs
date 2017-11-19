@@ -10,9 +10,9 @@ namespace Neo4jClient.Extension.Cypher
     public static partial class CypherExtension
     {
         private static Dictionary<string, object> CreateDynamic<TEntity>(
-           this TEntity entity
-           , List<CypherProperty> properties
-           , CreateDynamicOptions options = null) where TEntity : class
+            this TEntity entity
+            , List<CypherProperty> properties
+            , CreateDynamicOptions options = null) where TEntity : class
         {
             if (options == null)
             {
@@ -23,11 +23,10 @@ namespace Neo4jClient.Extension.Cypher
             var propertiesForDict = properties.Select(
                 prop => new
                 {
-                    Key = prop.JsonName
-                    ,
+                    Key = prop.JsonName,
                     Value = GetValue(entity, prop, type)
                 }
-                ).ToList();
+            ).ToList();
 
             if (options.IgnoreNulls)
             {

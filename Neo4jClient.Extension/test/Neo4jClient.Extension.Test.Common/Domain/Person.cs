@@ -18,7 +18,7 @@ namespace Neo4jClient.Extension.Test.Cypher
         /// Primary key seeded from else where
         /// </summary>
         public int Id { get; set; }
-        
+
         public string Name { get; set; }
 
         public Gender Sex { get; set; }

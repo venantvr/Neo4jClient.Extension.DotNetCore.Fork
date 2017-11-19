@@ -177,44 +177,30 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Rénald\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "/developer/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
-    "restoreSettings": {
-      "hideWarningsAndErrors": true
-    },
     "restore": {
-      "projectUniqueName": "C:\\Users\\Rénald\\Source\\Repos\\DotNetCore.VsCode\\project\\Neo4jClient.Extension\\src\\Neo4jClient.Extension.Attributes\\Neo4jClient.Extension.Attributes.csproj",
+      "projectUniqueName": "/developer/RiderProjects/Neo4jClient.Extension.DotNetCore.Fork/Neo4jClient.Extension/src/Neo4jClient.Extension.Attributes/Neo4jClient.Extension.Attributes.csproj",
       "projectName": "Neo4jClient.Extension.Attributes",
-      "projectPath": "C:\\Users\\Rénald\\Source\\Repos\\DotNetCore.VsCode\\project\\Neo4jClient.Extension\\src\\Neo4jClient.Extension.Attributes\\Neo4jClient.Extension.Attributes.csproj",
-      "packagesPath": "C:\\Users\\Rénald\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Rénald\\Source\\Repos\\DotNetCore.VsCode\\project\\Neo4jClient.Extension\\src\\Neo4jClient.Extension.Attributes\\obj\\",
+      "projectPath": "/developer/RiderProjects/Neo4jClient.Extension.DotNetCore.Fork/Neo4jClient.Extension/src/Neo4jClient.Extension.Attributes/Neo4jClient.Extension.Attributes.csproj",
+      "packagesPath": "/developer/.nuget/packages/",
+      "outputPath": "/developer/RiderProjects/Neo4jClient.Extension.DotNetCore.Fork/Neo4jClient.Extension/src/Neo4jClient.Extension.Attributes/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Rénald\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/developer/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netstandard2.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://www.nuget.org/api/v2/": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {}
         }
-      },
-      "warningProperties": {
-        "warnAsError": [
-          "NU1605"
-        ]
       }
     },
     "frameworks": {
@@ -223,8 +209,7 @@
           "NETStandard.Library": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "2.0.0",
-            "autoReferenced": true
+            "version": "2.0.0"
           }
         },
         "imports": [

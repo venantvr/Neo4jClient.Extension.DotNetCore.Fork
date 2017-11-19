@@ -10,15 +10,15 @@ namespace Neo4jClient.Extension.Test.Cypher
         {
             var archer = new Person
             {
-                Id=n
-                ,Name = "Sterling Archer"
-                ,Sex= Gender.Male
-                ,HomeAddress = GetWellKnownAddress(200)
-                ,WorkAddress = GetWellKnownAddress(59)
-                ,IsOperative =true
-                ,SerialNumber = 123456
-                ,SpendingAuthorisation = 100.23m
-                ,DateCreated = DateTimeOffset.Parse("2015-07-11T08:00:00+10:00")
+                Id = n,
+                Name = "Sterling Archer",
+                Sex = Gender.Male,
+                HomeAddress = GetWellKnownAddress(200),
+                WorkAddress = GetWellKnownAddress(59),
+                IsOperative = true,
+                SerialNumber = 123456,
+                SpendingAuthorisation = 100.23m,
+                DateCreated = DateTimeOffset.Parse("2015-07-11T08:00:00+10:00")
             };
 
             return archer;

@@ -7,10 +7,11 @@ using Neo4jClient.Extension.Cypher.Attributes;
 using Newtonsoft.Json.Serialization;
 using System.Runtime.CompilerServices;
 
-[assembly:InternalsVisibleTo("Neo4jClient.Extension.UnitTest")]
+[assembly: InternalsVisibleTo("Neo4jClient.Extension.UnitTest")]
+
 namespace Neo4jClient.Extension.Cypher
 {
-    public static partial class  CypherExtension
+    public static partial class CypherExtension
     {
         private static string GetMatchWithParam(string key, string label, string paramName)
         {
@@ -33,6 +34,7 @@ namespace Neo4jClient.Extension.Cypher
             var output = string.Format("{{{0}}}", input);
             return output;
         }
+
         private static string WithPrePostWrap(string innerCypher, IOptionsBase options)
         {
             var output = string.Format("{0}({1}){2}", options.PreCql, innerCypher, options.PostCql);
@@ -55,7 +57,7 @@ namespace Neo4jClient.Extension.Cypher
         {
             return key + "MatchKey";
         }
-        
+
         private static string GetRelationshipCql(string identifierFrom, string relationshipSegment, string identifierTo)
         {
             var cql = string.Format("({0})-[{1}]->({2})"
@@ -65,7 +67,7 @@ namespace Neo4jClient.Extension.Cypher
 
             return cql;
         }
-        
+
         internal static string GetMatchCypher<TEntity>(this TEntity entity
             , ICypherExtensionContext context
             , List<CypherProperty> useProperties
@@ -88,7 +90,8 @@ namespace Neo4jClient.Extension.Cypher
             return cypher;
         }
 
-        internal static string ToCypherString<TEntity, TAttr>(this TEntity entity, ICypherExtensionContext context, string paramKey = null, List<CypherProperty> useProperties = null)
+        internal static string ToCypherString<TEntity, TAttr>(this TEntity entity, ICypherExtensionContext context,
+            string paramKey = null, List<CypherProperty> useProperties = null)
             where TAttr : CypherExtensionAttribute
             where TEntity : class
         {

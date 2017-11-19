@@ -8,6 +8,7 @@ namespace Neo4jClient.Extension.Test.TestEntities.Relationships
     public class HomeAddressRelationship : BaseRelationship
     {
         public const string LabelName = "HOME_ADDRESS";
+
         public HomeAddressRelationship(DateTimeOffset effective, string from = "agent", string to = "address")
             : base(from, to)
         {
@@ -20,7 +21,7 @@ namespace Neo4jClient.Extension.Test.TestEntities.Relationships
         }
 
         public HomeAddressRelationship(string relationshipIdentifier, string from, string to)
-          : base(relationshipIdentifier, from, to)
+            : base(relationshipIdentifier, from, to)
         {
         }
 

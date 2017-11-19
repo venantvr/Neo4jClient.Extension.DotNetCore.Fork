@@ -10,18 +10,18 @@ namespace Neo4jClient.Extension.Test.Data
         public static void ConfigureModel()
         {
             FluentConfig.Config()
-               .With<Person>("SecretAgent")
-               .Match(x => x.Id)
-               .Merge(x => x.Id)
-               .MergeOnCreate(p => p.Id)
-               .MergeOnCreate(p => p.DateCreated)
-               .MergeOnMatchOrCreate(p => p.Title)
-               .MergeOnMatchOrCreate(p => p.Name)
-               .MergeOnMatchOrCreate(p => p.IsOperative)
-               .MergeOnMatchOrCreate(p => p.Sex)
-               .MergeOnMatchOrCreate(p => p.SerialNumber)
-               .MergeOnMatchOrCreate(p => p.SpendingAuthorisation)
-               .Set();
+                .With<Person>("SecretAgent")
+                .Match(x => x.Id)
+                .Merge(x => x.Id)
+                .MergeOnCreate(p => p.Id)
+                .MergeOnCreate(p => p.DateCreated)
+                .MergeOnMatchOrCreate(p => p.Title)
+                .MergeOnMatchOrCreate(p => p.Name)
+                .MergeOnMatchOrCreate(p => p.IsOperative)
+                .MergeOnMatchOrCreate(p => p.Sex)
+                .MergeOnMatchOrCreate(p => p.SerialNumber)
+                .MergeOnMatchOrCreate(p => p.SpendingAuthorisation)
+                .Set();
 
             FluentConfig.Config()
                 .With<Address>()
@@ -44,8 +44,8 @@ namespace Neo4jClient.Extension.Test.Data
                 .Set();
 
             FluentConfig.Config()
-               .With<WorkAddressRelationship>()
-               .Set();
+                .With<WorkAddressRelationship>()
+                .Set();
         }
     }
 }

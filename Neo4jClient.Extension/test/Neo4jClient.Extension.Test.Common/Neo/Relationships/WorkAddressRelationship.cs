@@ -12,6 +12,7 @@ namespace Neo4jClient.Extension.Test.TestEntities.Relationships
     public class WorkAddressRelationship : BaseRelationship
     {
         public const string LabelName = "WORK_ADDRESS";
+
         public WorkAddressRelationship(string from = null, string to = null)
             : base(from, to)
         {

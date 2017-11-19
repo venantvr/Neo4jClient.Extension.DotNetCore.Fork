@@ -19,11 +19,11 @@ namespace Neo4jClient.Extension.Test.CustomConverters
         }
 
         public override object ReadJson(JsonReader reader, Type objectType,
-                                        object existingValue, JsonSerializer serializer)
+            object existingValue, JsonSerializer serializer)
         {
             if (reader.TokenType == JsonToken.String)
             {
-                if ((string)reader.Value == string.Empty)
+                if ((string) reader.Value == string.Empty)
                 {
                     return null;
                 }
@@ -38,9 +38,9 @@ namespace Neo4jClient.Extension.Test.CustomConverters
         }
 
         public override void WriteJson(JsonWriter writer, object value,
-                                       JsonSerializer serializer)
+            JsonSerializer serializer)
         {
-            var area = (Area?)value;
+            var area = (Area?) value;
             if (!area.HasValue)
             {
                 writer.WriteValue((float?) null);

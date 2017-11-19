@@ -347,6 +347,12 @@
           "lib/netstandard1.6/nunit.framework.dll": {}
         }
       },
+      "NUnit3TestAdapter/3.9.0": {
+        "type": "package",
+        "build": {
+          "build/net35/NUnit3TestAdapter.props": {}
+        }
+      },
       "runtime.native.System/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -1472,6 +1478,7 @@
           "Microsoft.NET.Test.Sdk": "15.5.0",
           "Moq": "4.7.145",
           "NUnit": "3.9.0",
+          "NUnit3TestAdapter": "3.9.0",
           "Neo4jClient": "2.0.0.9",
           "Neo4jClient.Extension": "1.0.0",
           "Neo4jClient.Extension.Attributes": "1.0.0",
@@ -1492,6 +1499,7 @@
           "Microsoft.NET.Test.Sdk": "15.5.0",
           "Moq": "4.7.145",
           "NUnit": "3.9.0",
+          "NUnit3TestAdapter": "3.9.0",
           "Neo4jClient": "2.0.0.9",
           "Neo4jClient.Extension": "1.0.0",
           "Neo4jClient.Extension.Attributes": "1.0.0",
@@ -1987,23 +1995,17 @@
       ]
     },
     "Newtonsoft.Json/10.0.3": {
-      "sha512": "wBM7i7i3U2WX0ecor4zdVGvgrwFUjuigBoHKiL+nH39fCOpCPjBY3RDqJM32edvdyTAVdjzlccHsg41+/+zpSA==",
+      "sha512": "hSXaFmh7hNCuEoC4XNY5DrRkLDzYHqPx/Ik23R4J86Z7PE/Y6YidhG602dFVdLBRSdG6xp9NabH3dXpcoxWvww==",
       "type": "package",
       "path": "newtonsoft.json/10.0.3",
       "files": [
         "LICENSE.md",
         "lib/net20/Newtonsoft.Json.dll",
-        "lib/net20/Newtonsoft.Json.xml",
         "lib/net35/Newtonsoft.Json.dll",
-        "lib/net35/Newtonsoft.Json.xml",
         "lib/net40/Newtonsoft.Json.dll",
-        "lib/net40/Newtonsoft.Json.xml",
         "lib/net45/Newtonsoft.Json.dll",
-        "lib/net45/Newtonsoft.Json.xml",
         "lib/netstandard1.0/Newtonsoft.Json.dll",
-        "lib/netstandard1.0/Newtonsoft.Json.xml",
         "lib/netstandard1.3/Newtonsoft.Json.dll",
-        "lib/netstandard1.3/Newtonsoft.Json.xml",
         "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.dll",
         "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.xml",
         "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll",
@@ -2042,6 +2044,28 @@
         "lib/xamarin.ios/nunit.framework.xml",
         "nunit.3.9.0.nupkg.sha512",
         "nunit.nuspec"
+      ]
+    },
+    "NUnit3TestAdapter/3.9.0": {
+      "sha512": "mtJZ7ejIVZliD0NI0HA3z1VgvBQVmwbnMOF2Lvg7j0MBJYXFOdBgNZcNZHFa8/lbgeckGxV4H93e+njHRbBtpQ==",
+      "type": "package",
+      "path": "nunit3testadapter/3.9.0",
+      "files": [
+        "LICENSE.txt",
+        "build/net35/Mono.Cecil.Mdb.dll",
+        "build/net35/Mono.Cecil.Pdb.dll",
+        "build/net35/Mono.Cecil.Rocks.dll",
+        "build/net35/Mono.Cecil.dll",
+        "build/net35/NUnit3.TestAdapter.dll",
+        "build/net35/NUnit3TestAdapter.props",
+        "build/net35/nunit.engine.api.dll",
+        "build/net35/nunit.engine.dll",
+        "build/netcoreapp1.0/Mono.Cecil.dll",
+        "build/netcoreapp1.0/NUnit3.TestAdapter.dll",
+        "build/netcoreapp1.0/NUnit3TestAdapter.props",
+        "build/netcoreapp1.0/nunit.engine.netstandard.dll",
+        "nunit3testadapter.3.9.0.nupkg.sha512",
+        "nunit3testadapter.nuspec"
       ]
     },
     "runtime.native.System/4.3.0": {
@@ -4553,6 +4577,7 @@
       "Moq >= 4.7.145",
       "NETStandard.Library >= 2.0.0",
       "NUnit >= 3.9.0",
+      "NUnit3TestAdapter >= 3.9.0",
       "Neo4jClient >= 2.0.0.9",
       "Neo4jClient.Extension >= 1.0.0",
       "Neo4jClient.Extension.Attributes >= 1.0.0",
@@ -4562,78 +4587,67 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Rénald\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "/developer/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
-    "restoreSettings": {
-      "hideWarningsAndErrors": true
-    },
     "restore": {
-      "projectUniqueName": "C:\\Users\\Rénald\\Source\\Repos\\DotNetCore.VsCode\\project\\Neo4jClient.Extension\\test\\Neo4jClient.Extension.IntegrationTest\\Neo4jClient.Extension.IntegrationTest.csproj",
+      "projectUniqueName": "/developer/RiderProjects/Neo4jClient.Extension.DotNetCore.Fork/Neo4jClient.Extension/test/Neo4jClient.Extension.IntegrationTest/Neo4jClient.Extension.IntegrationTest.csproj",
       "projectName": "Neo4jClient.Extension.IntegrationTest",
-      "projectPath": "C:\\Users\\Rénald\\Source\\Repos\\DotNetCore.VsCode\\project\\Neo4jClient.Extension\\test\\Neo4jClient.Extension.IntegrationTest\\Neo4jClient.Extension.IntegrationTest.csproj",
-      "packagesPath": "C:\\Users\\Rénald\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Rénald\\Source\\Repos\\DotNetCore.VsCode\\project\\Neo4jClient.Extension\\test\\Neo4jClient.Extension.IntegrationTest\\obj\\",
+      "projectPath": "/developer/RiderProjects/Neo4jClient.Extension.DotNetCore.Fork/Neo4jClient.Extension/test/Neo4jClient.Extension.IntegrationTest/Neo4jClient.Extension.IntegrationTest.csproj",
+      "packagesPath": "/developer/.nuget/packages/",
+      "outputPath": "/developer/RiderProjects/Neo4jClient.Extension.DotNetCore.Fork/Neo4jClient.Extension/test/Neo4jClient.Extension.IntegrationTest/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Rénald\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/developer/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netstandard2.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://www.nuget.org/api/v2/": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
-            "C:\\Users\\Rénald\\Source\\Repos\\DotNetCore.VsCode\\project\\Neo4jClient.Extension\\src\\Neo4jClient.Extension.Attributes\\Neo4jClient.Extension.Attributes.csproj": {
-              "projectPath": "C:\\Users\\Rénald\\Source\\Repos\\DotNetCore.VsCode\\project\\Neo4jClient.Extension\\src\\Neo4jClient.Extension.Attributes\\Neo4jClient.Extension.Attributes.csproj"
+            "/developer/RiderProjects/Neo4jClient.Extension.DotNetCore.Fork/Neo4jClient.Extension/src/Neo4jClient.Extension.Attributes/Neo4jClient.Extension.Attributes.csproj": {
+              "projectPath": "/developer/RiderProjects/Neo4jClient.Extension.DotNetCore.Fork/Neo4jClient.Extension/src/Neo4jClient.Extension.Attributes/Neo4jClient.Extension.Attributes.csproj"
             },
-            "C:\\Users\\Rénald\\Source\\Repos\\DotNetCore.VsCode\\project\\Neo4jClient.Extension\\test\\Neo4jClient.Extension.UnitTest\\Neo4jClient.Extension.UnitTest.csproj": {
-              "projectPath": "C:\\Users\\Rénald\\Source\\Repos\\DotNetCore.VsCode\\project\\Neo4jClient.Extension\\test\\Neo4jClient.Extension.UnitTest\\Neo4jClient.Extension.UnitTest.csproj"
+            "/developer/RiderProjects/Neo4jClient.Extension.DotNetCore.Fork/Neo4jClient.Extension/src/Neo4jClient.Extension/Neo4jClient.Extension.csproj": {
+              "projectPath": "/developer/RiderProjects/Neo4jClient.Extension.DotNetCore.Fork/Neo4jClient.Extension/src/Neo4jClient.Extension/Neo4jClient.Extension.csproj"
             },
-            "C:\\Users\\Rénald\\Source\\Repos\\DotNetCore.VsCode\\project\\Neo4jClient.Extension\\src\\Neo4jClient.Extension\\Neo4jClient.Extension.csproj": {
-              "projectPath": "C:\\Users\\Rénald\\Source\\Repos\\DotNetCore.VsCode\\project\\Neo4jClient.Extension\\src\\Neo4jClient.Extension\\Neo4jClient.Extension.csproj"
+            "/developer/RiderProjects/Neo4jClient.Extension.DotNetCore.Fork/Neo4jClient.Extension/test/Neo4jClient.Extension.UnitTest/Neo4jClient.Extension.UnitTest.csproj": {
+              "projectPath": "/developer/RiderProjects/Neo4jClient.Extension.DotNetCore.Fork/Neo4jClient.Extension/test/Neo4jClient.Extension.UnitTest/Neo4jClient.Extension.UnitTest.csproj"
             }
           }
         }
-      },
-      "warningProperties": {
-        "warnAsError": [
-          "NU1605"
-        ]
       }
     },
     "frameworks": {
       "netstandard2.0": {
         "dependencies": {
-          "Neo4jClient": {
-            "target": "Package",
-            "version": "2.0.0.9"
-          },
           "NETStandard.Library": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "2.0.0",
-            "autoReferenced": true
+            "version": "2.0.0"
           },
-          "UnitsNet": {
+          "Microsoft.NET.Test.Sdk": {
             "target": "Package",
-            "version": "3.78.0"
+            "version": "15.5.0"
           },
           "Moq": {
             "target": "Package",
             "version": "4.7.145"
           },
+          "Neo4jClient": {
+            "target": "Package",
+            "version": "2.0.0.9"
+          },
           "NUnit": {
+            "target": "Package",
+            "version": "3.9.0"
+          },
+          "NUnit3TestAdapter": {
             "target": "Package",
             "version": "3.9.0"
           },
@@ -4641,9 +4655,9 @@
             "target": "Package",
             "version": "4.4.0"
           },
-          "Microsoft.NET.Test.Sdk": {
+          "UnitsNet": {
             "target": "Package",
-            "version": "15.5.0"
+            "version": "3.78.0"
           }
         },
         "imports": [
@@ -4653,5 +4667,17 @@
         "warn": true
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'NUnit3TestAdapter 3.9.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETStandard,Version=v2.0'. This package may not be fully compatible with your project.",
+      "libraryId": "NUnit3TestAdapter",
+      "targetGraphs": [
+        ".NETStandard,Version=v2.0"
+      ]
+    }
+  ]
 }

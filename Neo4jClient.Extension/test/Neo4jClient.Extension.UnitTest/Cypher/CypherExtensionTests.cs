@@ -11,7 +11,6 @@ namespace Neo4jClient.Extension.Test.Cypher
 {
     public class CypherExtensionTestHelper
     {
-
         public Mock<IRawGraphClient> GraphClient { get; private set; }
         public CypherExtensionContext CypherExtensionContext { get; private set; }
         public CypherFluentQuery Query { get; private set; }
@@ -46,7 +45,7 @@ namespace Neo4jClient.Extension.Test.Cypher
 
             //assert
             Assert.AreEqual("cyphermodel:CypherModel {id:{cyphermodelMatchKey}.id}", result);
-            Assert.AreEqual(result,result2);
+            Assert.AreEqual(result, result2);
         }
 
         [Test]
@@ -59,7 +58,7 @@ namespace Neo4jClient.Extension.Test.Cypher
             model.id = Guid.Parse("9aa1343f-18a4-41a6-a414-34b7df62c919");
             //act
             var q = helper.Query.MatchEntity(model).Return(cyphermodel => cyphermodel.As<CypherModel>());
-            
+
             Console.WriteLine(q.Query.QueryText);
 
             //assert
@@ -74,11 +73,11 @@ RETURN cyphermodel", q.Query.QueryText);
             var helper = new CypherExtensionTestHelper().SetupGraphClient();
 
             var model = CreateModel();
-            
+
             //act
             var q = helper.Query
-                            .MatchEntity(model, propertyOverride: model.UseProperties(x => x.firstName, x => x.isLegend))
-                            .Return(cyphermodel => cyphermodel.As<CypherModel>());
+                .MatchEntity(model, propertyOverride: model.UseProperties(x => x.firstName, x => x.isLegend))
+                .Return(cyphermodel => cyphermodel.As<CypherModel>());
 
             Console.WriteLine(q.GetFormattedDebugText());
 
@@ -100,9 +99,9 @@ RETURN cyphermodel", q.GetFormattedDebugText());
             var helper = new CypherExtensionTestHelper().SetupGraphClient();
 
             var model = CreateModel();
-            
+
             //act
-            var q = helper.Query.MatchEntity(model,"key").Return(cyphermodel => cyphermodel.As<CypherModel>());
+            var q = helper.Query.MatchEntity(model, "key").Return(cyphermodel => cyphermodel.As<CypherModel>());
 
             Console.WriteLine(q.Query.DebugQueryText);
 
@@ -120,10 +119,11 @@ RETURN cyphermodel", q.Query.DebugQueryText);
             var helper = new CypherExtensionTestHelper().SetupGraphClient();
 
             var model = CreateModel();
-            
+
 
             //act
-            var q = helper.Query.MatchEntity(model, preCql: "(a:Node)-->").Return(cyphermodel => cyphermodel.As<CypherModel>());
+            var q = helper.Query.MatchEntity(model, preCql: "(a:Node)-->")
+                .Return(cyphermodel => cyphermodel.As<CypherModel>());
 
             Console.WriteLine(q.GetFormattedDebugText());
 
@@ -143,12 +143,15 @@ RETURN cyphermodel", q.GetFormattedDebugText());
             var model = CreateModel();
 
             //act
-            var q = helper.Query.MatchEntity(model, postCql: "<--(a:Node)").Return(cyphermodel => cyphermodel.As<CypherModel>());
+            var q = helper.Query.MatchEntity(model, postCql: "<--(a:Node)")
+                .Return(cyphermodel => cyphermodel.As<CypherModel>());
 
             Console.WriteLine(q.GetFormattedDebugText());
 
             //assert
-            Assert.AreEqual("MATCH (cyphermodel:CypherModel {id:{cyphermodelMatchKey}.id})<--(a:Node)\r\nRETURN cyphermodel", q.Query.QueryText);
+            Assert.AreEqual(
+                "MATCH (cyphermodel:CypherModel {id:{cyphermodelMatchKey}.id})<--(a:Node)\r\nRETURN cyphermodel",
+                q.Query.QueryText);
         }
 
         [Test]
@@ -161,8 +164,8 @@ RETURN cyphermodel", q.GetFormattedDebugText());
 
             //act
             var q = helper.Query
-                        .MatchEntity(model, "key",  "(a:Node)-->", "<--(b:Node)", new List<CypherProperty>())
-                        .Return(cyphermodel => cyphermodel.As<CypherModel>());
+                .MatchEntity(model, "key", "(a:Node)-->", "<--(b:Node)", new List<CypherProperty>())
+                .Return(cyphermodel => cyphermodel.As<CypherModel>());
 
             Console.WriteLine(q.GetFormattedDebugText());
 
@@ -218,7 +221,7 @@ ON CREATE SET cyphermodel = {
             var model = CreateModel();
 
             //act
-            var q = helper.Query.MergeEntity(model,"key");
+            var q = helper.Query.MergeEntity(model, "key");
 
             Console.WriteLine(q.GetFormattedDebugText());
 
@@ -244,7 +247,7 @@ ON CREATE SET key = {
             var model = CreateModel();
 
             //act
-            var q = helper.Query.MergeEntity(model, mergeOverride:model.UseProperties(x => x.firstName));
+            var q = helper.Query.MergeEntity(model, mergeOverride: model.UseProperties(x => x.firstName));
 
             Console.WriteLine(q.GetFormattedDebugText());
 
@@ -313,7 +316,8 @@ ON CREATE SET cyphermodel = {
             var model = CreateModel();
 
             //act
-            var q = helper.Query.MergeEntity(model,"key", new List<CypherProperty>(),new List<CypherProperty>(), new List<CypherProperty>(), "(a:Node)-->","<--(b:Node)");
+            var q = helper.Query.MergeEntity(model, "key", new List<CypherProperty>(), new List<CypherProperty>(),
+                new List<CypherProperty>(), "(a:Node)-->", "<--(b:Node)");
 
             Console.WriteLine(q.GetFormattedDebugText());
 
@@ -329,7 +333,7 @@ ON CREATE SET cyphermodel = {
             var helper = new CypherExtensionTestHelper().SetupGraphClient();
 
             var model = new ComponentOf("from", "to");
-            
+
             //act
             var q = helper.Query.MergeRelationship(model);
 
@@ -375,7 +379,7 @@ ON MATCH SET fromto.instructionText = """"", q.GetFormattedDebugText());
             var q = helper.Query.MergeRelationship(model);
 
             Console.WriteLine(q.GetFormattedDebugText());
-            
+
             //assert
             Assert.AreEqual(@"MERGE (from)-[fromto:COMPONENT_OF {quantity:{
   quantity: 0.0,
@@ -436,7 +440,7 @@ ON MATCH SET fromto.instructionText = """"", q.GetFormattedDebugText());
             var model = new ComponentOf("from", "to");
 
             //act
-            var q = helper.Query.MergeRelationship(model,onMatchOverride:model.UseProperties(x => x.quantity));
+            var q = helper.Query.MergeRelationship(model, onMatchOverride: model.UseProperties(x => x.quantity));
 
             Console.WriteLine(q.GetFormattedDebugText());
 
@@ -518,7 +522,8 @@ ON CREATE SET fromto = {
             var model = new ComponentOf("from", "to");
 
             //act
-            var q = helper.Query.MergeRelationship(model, new List<CypherProperty>(), new List<CypherProperty>(), new List<CypherProperty>());
+            var q = helper.Query.MergeRelationship(model, new List<CypherProperty>(), new List<CypherProperty>(),
+                new List<CypherProperty>());
 
             Console.WriteLine(q.GetFormattedDebugText());
 
@@ -556,7 +561,7 @@ ON CREATE SET fromto = {
         {
             var model = new CypherModel
             {
-                dateOfBirth = new DateTimeOffset(1981, 4, 1, 0, 0 , 0, TimeSpan.Zero),
+                dateOfBirth = new DateTimeOffset(1981, 4, 1, 0, 0, 0, TimeSpan.Zero),
                 answerToTheMeaningOfLifeAndEverything = 42,
                 firstName = "Foo",
                 isLegend = false
@@ -580,26 +585,33 @@ ON CREATE SET fromto = {
         [CypherLabel(Name = "COMPONENT_OF")]
         public class ComponentOf : BaseRelationship
         {
-            public ComponentOf(string from = null, string to = null): base(from, to)
+            public ComponentOf(string from = null, string to = null) : base(from, to)
             {
                 instructionText = string.Empty;
             }
+
             [CypherMerge]
             [CypherMergeOnMatch]
             public double quantity { get; set; }
+
             [CypherMerge]
             [CypherMergeOnMatch]
             public UnitsOfMeasure unitOfMeasure { get; set; }
+
             [CypherMerge]
             [CypherMergeOnMatch]
             public int factor { get; set; }
+
             [CypherMerge]
             [CypherMergeOnMatch]
             public string instructionText { get; set; }
         }
     }
+
     [CypherLabel(Name = "MyName")]
-    public class LabelledModel { }
+    public class LabelledModel
+    {
+    }
 
     public class CypherModel
     {
@@ -614,14 +626,14 @@ ON CREATE SET fromto = {
 
         [CypherMergeOnCreate]
         public string firstName { get; set; }
-        
+
         [CypherMergeOnCreate]
         public DateTimeOffset dateOfBirth { get; set; }
-        
+
         [CypherMergeOnCreate]
         [CypherMergeOnMatch]
         public bool isLegend { get; set; }
-        
+
         [CypherMergeOnCreate]
         [CypherMergeOnMatch]
         public int answerToTheMeaningOfLifeAndEverything { get; set; }

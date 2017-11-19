@@ -11,9 +11,8 @@ namespace Neo4jClient.Extension.Test.TestData.Relationships
     [CypherLabel(Name = "HAS_CHECKED_OUT")]
     public class CheckedOutRelationship : BaseRelationship
     {
-        public CheckedOutRelationship() : base ("agent", "weapon")
+        public CheckedOutRelationship() : base("agent", "weapon")
         {
-            
         }
     }
 }

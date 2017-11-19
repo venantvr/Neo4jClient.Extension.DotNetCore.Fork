@@ -46,6 +46,5 @@ namespace Neo4jClient.Extension.Test.Integration.Tests
                 .OneDeepMergeByRelationshipAct()
                 .ExecuteWithoutResults();
         }
-        
     }
 }

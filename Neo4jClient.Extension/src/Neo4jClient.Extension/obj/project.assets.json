@@ -1368,7 +1368,7 @@
       ]
     },
     "Newtonsoft.Json/10.0.3": {
-      "sha512": "wBM7i7i3U2WX0ecor4zdVGvgrwFUjuigBoHKiL+nH39fCOpCPjBY3RDqJM32edvdyTAVdjzlccHsg41+/+zpSA==",
+      "sha512": "hSXaFmh7hNCuEoC4XNY5DrRkLDzYHqPx/Ik23R4J86Z7PE/Y6YidhG602dFVdLBRSdG6xp9NabH3dXpcoxWvww==",
       "type": "package",
       "path": "newtonsoft.json/10.0.3",
       "files": [
@@ -3453,70 +3453,55 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Rénald\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "/developer/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
-    "restoreSettings": {
-      "hideWarningsAndErrors": true
-    },
     "restore": {
-      "projectUniqueName": "C:\\Users\\Rénald\\Source\\Repos\\DotNetCore.VsCode\\project\\Neo4jClient.Extension\\src\\Neo4jClient.Extension\\Neo4jClient.Extension.csproj",
+      "projectUniqueName": "/developer/RiderProjects/Neo4jClient.Extension.DotNetCore.Fork/Neo4jClient.Extension/src/Neo4jClient.Extension/Neo4jClient.Extension.csproj",
       "projectName": "Neo4jClient.Extension",
-      "projectPath": "C:\\Users\\Rénald\\Source\\Repos\\DotNetCore.VsCode\\project\\Neo4jClient.Extension\\src\\Neo4jClient.Extension\\Neo4jClient.Extension.csproj",
-      "packagesPath": "C:\\Users\\Rénald\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Rénald\\Source\\Repos\\DotNetCore.VsCode\\project\\Neo4jClient.Extension\\src\\Neo4jClient.Extension\\obj\\",
+      "projectPath": "/developer/RiderProjects/Neo4jClient.Extension.DotNetCore.Fork/Neo4jClient.Extension/src/Neo4jClient.Extension/Neo4jClient.Extension.csproj",
+      "packagesPath": "/developer/.nuget/packages/",
+      "outputPath": "/developer/RiderProjects/Neo4jClient.Extension.DotNetCore.Fork/Neo4jClient.Extension/src/Neo4jClient.Extension/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Rénald\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/developer/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netstandard2.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://www.nuget.org/api/v2/": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
-            "C:\\Users\\Rénald\\Source\\Repos\\DotNetCore.VsCode\\project\\Neo4jClient.Extension\\src\\Neo4jClient.Extension.Attributes\\Neo4jClient.Extension.Attributes.csproj": {
-              "projectPath": "C:\\Users\\Rénald\\Source\\Repos\\DotNetCore.VsCode\\project\\Neo4jClient.Extension\\src\\Neo4jClient.Extension.Attributes\\Neo4jClient.Extension.Attributes.csproj"
+            "/developer/RiderProjects/Neo4jClient.Extension.DotNetCore.Fork/Neo4jClient.Extension/src/Neo4jClient.Extension.Attributes/Neo4jClient.Extension.Attributes.csproj": {
+              "projectPath": "/developer/RiderProjects/Neo4jClient.Extension.DotNetCore.Fork/Neo4jClient.Extension/src/Neo4jClient.Extension.Attributes/Neo4jClient.Extension.Attributes.csproj"
             }
           }
         }
-      },
-      "warningProperties": {
-        "warnAsError": [
-          "NU1605"
-        ]
       }
     },
     "frameworks": {
       "netstandard2.0": {
         "dependencies": {
+          "NETStandard.Library": {
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "2.0.0"
+          },
           "Neo4jClient": {
             "target": "Package",
             "version": "2.0.0.9"
           },
-          "NETStandard.Library": {
-            "suppressParent": "All",
+          "Newtonsoft.Json": {
             "target": "Package",
-            "version": "2.0.0",
-            "autoReferenced": true
+            "version": "10.0.3"
           },
           "System.Reflection": {
             "target": "Package",
             "version": "4.3.0"
-          },
-          "Newtonsoft.Json": {
-            "target": "Package",
-            "version": "10.0.3"
           }
         },
         "imports": [

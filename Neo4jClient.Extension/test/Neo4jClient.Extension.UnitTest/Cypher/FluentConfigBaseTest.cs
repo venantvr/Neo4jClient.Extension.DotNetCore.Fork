@@ -45,10 +45,10 @@ namespace Neo4jClient.Extension.Test.Cypher
         {
             var moqGraphClient = new Mock<IGraphClient>();
             var mockRawClient = moqGraphClient.As<IRawGraphClient>();
-            
+
             moqGraphClient.Setup(c => c.JsonConverters).Returns(JsonConverters);
             moqGraphClient.Setup(c => c.JsonContractResolver).Returns(GraphClient.DefaultJsonContractResolver);
-            
+
             return mockRawClient.Object;
         }
 
@@ -65,6 +65,5 @@ namespace Neo4jClient.Extension.Test.Cypher
                 return new CypherFluentQuery(cypherClient);
             };
         }
-
     }
 }

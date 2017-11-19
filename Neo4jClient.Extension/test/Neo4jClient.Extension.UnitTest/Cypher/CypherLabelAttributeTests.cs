@@ -12,7 +12,7 @@ namespace Neo4jClient.Extension.Test.Cypher
         [Test]
         public void UsesClassName_WhenMultipleLabelsAreSpecified()
         {
-            var model = new MultiLabel { Id = 1 };
+            var model = new MultiLabel {Id = 1};
             var helper = new CypherExtensionTestHelper().SetupGraphClient();
 
             var q = helper.Query.MergeEntity(model);
@@ -24,7 +24,7 @@ namespace Neo4jClient.Extension.Test.Cypher
         [Test]
         public void UsesSuppliedParamName_WhenMultipleLabelsAreSpecified()
         {
-            var model = new MultiLabel { Id = 1 };
+            var model = new MultiLabel {Id = 1};
             var helper = new CypherExtensionTestHelper().SetupGraphClient();
 
             var q = helper.Query.MergeEntity(model, "n");
@@ -36,14 +36,15 @@ namespace Neo4jClient.Extension.Test.Cypher
         [Test]
         public void HandlesLabelsWithSpaces()
         {
-            var model = new MultiLabelWithSpace { Id = 1 };
+            var model = new MultiLabelWithSpace {Id = 1};
             var helper = new CypherExtensionTestHelper().SetupGraphClient();
 
             var q = helper.Query.MergeEntity(model);
 
             var text = q.Query.QueryText;
             Console.WriteLine(text);
-            Assert.AreEqual("MERGE (multilabelwithspace:Multi:`Space Label` {id:{multilabelwithspaceMatchKey}.id})", text);
+            Assert.AreEqual("MERGE (multilabelwithspace:Multi:`Space Label` {id:{multilabelwithspaceMatchKey}.id})",
+                text);
         }
 
         public abstract class MultiBase
@@ -53,9 +54,13 @@ namespace Neo4jClient.Extension.Test.Cypher
         }
 
         [CypherLabel(Name = "Multi:`Space Label`")]
-        public class MultiLabelWithSpace : MultiBase {}
+        public class MultiLabelWithSpace : MultiBase
+        {
+        }
 
         [CypherLabel(Name = "Multi:Label")]
-        public class MultiLabel : MultiBase {}
+        public class MultiLabel : MultiBase
+        {
+        }
     }
 }

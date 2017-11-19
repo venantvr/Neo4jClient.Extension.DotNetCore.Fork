@@ -8,26 +8,29 @@ namespace Neo4jClient.Extension.Cypher
 {
     public class CypherTypeItemHelper
     {
-        private readonly ConcurrentDictionary<CypherTypeItem, List<CypherProperty>> _typeProperties = new ConcurrentDictionary<CypherTypeItem, List<CypherProperty>>();
+        private readonly ConcurrentDictionary<CypherTypeItem, List<CypherProperty>> _typeProperties =
+            new ConcurrentDictionary<CypherTypeItem, List<CypherProperty>>();
 
         public CypherTypeItem AddKeyAttribute<TEntity, TAttr>(ICypherExtensionContext context, TEntity entity)
             where TAttr : CypherExtensionAttribute
             where TEntity : class
         {
             var type = entity.GetType();
-            var key = new CypherTypeItem { Type = type, AttributeType = typeof(TAttr) };
+            var key = new CypherTypeItem {Type = type, AttributeType = typeof(TAttr)};
             //check cache
             if (!_typeProperties.ContainsKey(key))
             {
                 //strip off properties create map for usage
-                _typeProperties.AddOrUpdate(key, type.GetProperties().Where(x => x.GetCustomAttributes(typeof(TAttr),true).Any())
-                    .Select(x => new CypherProperty {TypeName = x.Name, JsonName = x.Name.ApplyCasing(context)})
-                    .ToList(), (k, e) => e);
+                _typeProperties.AddOrUpdate(key,
+                    type.GetProperties().Where(x => x.GetCustomAttributes(typeof(TAttr), true).Any())
+                        .Select(x => new CypherProperty {TypeName = x.Name, JsonName = x.Name.ApplyCasing(context)})
+                        .ToList(), (k, e) => e);
             }
             return key;
         }
 
-        public List<CypherProperty> PropertiesForPurpose<TEntity, TAttr>(ICypherExtensionContext context, TEntity entity)
+        public List<CypherProperty> PropertiesForPurpose<TEntity, TAttr>(ICypherExtensionContext context,
+            TEntity entity)
             where TEntity : class
             where TAttr : CypherExtensionAttribute
         {
@@ -39,7 +42,7 @@ namespace Neo4jClient.Extension.Cypher
             where TEntity : class
             where TAttr : CypherExtensionAttribute
         {
-            return PropertiesForPurpose<TEntity, TAttr>(CypherExtension.DefaultExtensionContext,entity);
+            return PropertiesForPurpose<TEntity, TAttr>(CypherExtension.DefaultExtensionContext, entity);
         }
 
         public void AddPropertyUsage(CypherTypeItem type, List<CypherProperty> properties)

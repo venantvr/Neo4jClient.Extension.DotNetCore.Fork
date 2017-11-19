@@ -12,12 +12,14 @@ using NUnit.Framework;
 
 namespace Neo4jClient.Extension.Test.Integration
 {
-
     public class IntegrationTest
     {
         protected static ITransactionalGraphClient GraphClient { get; private set; }
 
-        protected ICypherFluentQuery CypherQuery { get { return GraphClient.Cypher; } }
+        protected ICypherFluentQuery CypherQuery
+        {
+            get { return GraphClient.Cypher; }
+        }
 
         [SetUp]
         public void Setup()
@@ -36,7 +38,7 @@ namespace Neo4jClient.Extension.Test.Integration
         static IntegrationTest()
         {
             var connectionString = ConfigurationManager.AppSettings["Neo4jConnectionString"];
-            GraphClient  =new GraphClient(new Uri(connectionString));
+            GraphClient = new GraphClient(new Uri(connectionString));
 
             GraphClient.JsonConverters.Add(new AreaJsonConverter());
 

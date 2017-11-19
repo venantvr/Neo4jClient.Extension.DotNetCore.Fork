@@ -25,7 +25,7 @@ namespace Neo4jClient.Extension.Test.Cypher
         {
             UseQueryFactory(seedQueryFactory);
         }
-        
+
         [Test]
         public void OneDeep()
         {
@@ -53,12 +53,12 @@ ON CREATE SET person = {
   id: 7
 }", text);
         }
-        
+
         public ICypherFluentQuery OneDeepAct()
         {
             var person = SampleDataFactory.GetWellKnownPerson(7);
             var q = GetFluentQuery()
-                        .MergeEntity(person);
+                .MergeEntity(person);
             return q;
         }
 
@@ -103,7 +103,7 @@ ON CREATE SET personaddress = {
 }", text);
         }
 
-        
+
         public ICypherFluentQuery TwoDeepAct()
         {
             //setup
@@ -163,7 +163,6 @@ ON CREATE SET workAddress = {
   suburb: ""Fakeville"",
   street: ""59 Isis Street""
 }", text);
-
         }
 
         public ICypherFluentQuery OneDeepMergeByRelationshipAct()
@@ -192,7 +191,8 @@ ON CREATE SET workAddress = {
             var testPerson = SampleDataFactory.GetWellKnownPerson(7);
 
             // act
-            var cypherKey = testPerson.ToCypherString<Person, CypherMatchAttribute>(new CypherExtensionContext(), "pkey");
+            var cypherKey =
+                testPerson.ToCypherString<Person, CypherMatchAttribute>(new CypherExtensionContext(), "pkey");
             Console.WriteLine(cypherKey);
 
             // assert

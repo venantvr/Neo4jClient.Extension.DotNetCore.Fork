@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETStandard,Version=v2.0/",
-    "signature": "f769866950b4e8ddfb39a6d8957e5b6fba6607b0"
+    "signature": "0eda744b947585c69a12dbc1bb88806f80bf1656"
   },
   "compilationOptions": {},
   "targets": {
@@ -13,6 +13,7 @@
           "Moq": "4.7.145",
           "NETStandard.Library": "2.0.0",
           "NUnit": "3.9.0",
+          "NUnit3TestAdapter": "3.9.0",
           "Neo4jClient": "2.0.0.9",
           "Neo4jClient.Extension": "1.0.0",
           "Neo4jClient.Extension.Attributes": "1.0.0",
@@ -299,6 +300,7 @@
           "lib/netstandard1.6/nunit.framework.dll": {}
         }
       },
+      "NUnit3TestAdapter/3.9.0": {},
       "runtime.native.System/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0",
@@ -1142,7 +1144,7 @@
     "Newtonsoft.Json/10.0.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-wBM7i7i3U2WX0ecor4zdVGvgrwFUjuigBoHKiL+nH39fCOpCPjBY3RDqJM32edvdyTAVdjzlccHsg41+/+zpSA==",
+      "sha512": "sha512-hSXaFmh7hNCuEoC4XNY5DrRkLDzYHqPx/Ik23R4J86Z7PE/Y6YidhG602dFVdLBRSdG6xp9NabH3dXpcoxWvww==",
       "path": "newtonsoft.json/10.0.3",
       "hashPath": "newtonsoft.json.10.0.3.nupkg.sha512"
     },
@@ -1152,6 +1154,13 @@
       "sha512": "sha512-0zKA0MB0bRKqPyInRlTgKvZTx/MhJGGnSUJ4sjx68JnfVGbH0Tp+Xq7uW+HVw0B5gCN8s0pUQlrbC3mjGyUU8A==",
       "path": "nunit/3.9.0",
       "hashPath": "nunit.3.9.0.nupkg.sha512"
+    },
+    "NUnit3TestAdapter/3.9.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mtJZ7ejIVZliD0NI0HA3z1VgvBQVmwbnMOF2Lvg7j0MBJYXFOdBgNZcNZHFa8/lbgeckGxV4H93e+njHRbBtpQ==",
+      "path": "nunit3testadapter/3.9.0",
+      "hashPath": "nunit3testadapter.3.9.0.nupkg.sha512"
     },
     "runtime.native.System/4.3.0": {
       "type": "package",

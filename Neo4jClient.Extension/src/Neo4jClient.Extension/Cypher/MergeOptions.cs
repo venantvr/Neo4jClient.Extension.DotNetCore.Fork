@@ -24,7 +24,7 @@ namespace Neo4jClient.Extension.Cypher
         /// Merge the entity via a relationship
         /// </summary>
         public BaseRelationship MergeViaRelationship { get; set; }
-        
+
         public MergeOptions()
         {
             MergeOverride = null;
@@ -37,7 +37,7 @@ namespace Neo4jClient.Extension.Cypher
         /// </summary>
         public static MergeOptions WithIdentifier(string identifier)
         {
-            return new MergeOptions { Identifier = identifier };
+            return new MergeOptions {Identifier = identifier};
         }
 
         /// <summary>
@@ -65,5 +65,4 @@ namespace Neo4jClient.Extension.Cypher
             return WithMergeProperties(target, new List<CypherProperty>());
         }
     }
-
 }

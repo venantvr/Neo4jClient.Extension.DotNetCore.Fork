@@ -7,6 +7,7 @@
     <PackageReference Include="Moq" Version="4.7.145" />
     <PackageReference Include="Neo4jClient" Version="2.0.0.9" />
     <PackageReference Include="NUnit" Version="3.9.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.9.0" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.4.0" />
     <PackageReference Include="UnitsNet" Version="3.78.0" />
   </ItemGroup>

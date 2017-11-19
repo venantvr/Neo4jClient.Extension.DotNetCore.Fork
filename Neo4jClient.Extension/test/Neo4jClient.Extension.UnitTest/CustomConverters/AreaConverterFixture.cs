@@ -26,7 +26,7 @@ namespace Neo4jClient.Extension.Test.CustomConverters
             var settings = new JsonSerializerSettings();
             settings.Converters.Add(new AreaJsonConverter());
             settings.Formatting = Formatting.Indented;
-            
+
             var json = JsonConvert.SerializeObject(input, settings);
 
             Console.WriteLine(json);

@@ -15,7 +15,6 @@ namespace Neo4jClient.Extension.Test.Cypher
     {
         public FluentConfigCreateTests()
         {
-            
         }
 
         /// <summary>
@@ -26,14 +25,14 @@ namespace Neo4jClient.Extension.Test.Cypher
             UseQueryFactory(seedQueryFactory);
         }
 
-       
+
         public ICypherFluentQuery CreateWithUnusualTypeAct()
         {
             var weapon = SampleDataFactory.GetWellKnownWeapon(1);
 
             var q = GetFluentQuery()
                 .CreateEntity(weapon, "w");
-            
+
             return q;
         }
 
@@ -55,10 +54,10 @@ namespace Neo4jClient.Extension.Test.Cypher
             var agent = SampleDataFactory.GetWellKnownPerson(7);
 
             agent.HomeAddress.Suburb = null;
-            
+
             var q = GetFluentQuery()
                 .CreateEntity(agent.HomeAddress);
-            
+
             var text = q.GetFormattedDebugText();
             Assert.AreEqual(@"CREATE (address:Address {
   street: ""200 Isis Street""
@@ -72,7 +71,7 @@ namespace Neo4jClient.Extension.Test.Cypher
 
             var q = GetFluentQuery()
                 .CreateRelationship(homeRelationship);
-            
+
             var text = q.GetFormattedDebugText();
             Console.WriteLine(text);
 
@@ -110,7 +109,7 @@ CREATE (a)-[myHomeRelationshipIdentifier:HOME_ADDRESS {
 }]->(ha)
 CREATE (a)-[awa:WORK_ADDRESS]->(wa)", text);
         }
-        
+
         public ICypherFluentQuery CreateComplexAct()
         {
             var agent = SampleDataFactory.GetWellKnownPerson(7);
@@ -123,7 +122,7 @@ CREATE (a)-[awa:WORK_ADDRESS]->(wa)", text);
                 .CreateEntity(agent.WorkAddress, "wa")
                 .CreateRelationship(homeRelationship)
                 .CreateRelationship(new WorkAddressRelationship("a", "wa"));
-            
+
             return q;
         }
     }

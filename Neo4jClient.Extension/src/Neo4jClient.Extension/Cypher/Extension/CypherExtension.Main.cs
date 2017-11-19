@@ -14,8 +14,10 @@ namespace Neo4jClient.Extension.Cypher
         private static readonly CypherTypeItemHelper CypherTypeItemHelper = new CypherTypeItemHelper();
         public static CypherExtensionContext DefaultExtensionContext = new CypherExtensionContext();
         private static readonly Dictionary<Type, string> EntityLabelCache = new Dictionary<Type, string>();
-        
-        public static ICypherFluentQuery MatchEntity<T>(this ICypherFluentQuery query, T entity, string identifier = null, string preCql = "", string postCql = "", List<CypherProperty> propertyOverride = null) where T : class
+
+        public static ICypherFluentQuery MatchEntity<T>(this ICypherFluentQuery query, T entity,
+            string identifier = null, string preCql = "", string postCql = "",
+            List<CypherProperty> propertyOverride = null) where T : class
         {
             var options = new MatchOptions
             {
@@ -33,8 +35,9 @@ namespace Neo4jClient.Extension.Cypher
             return MatchWorker(query, entity, options, (q, s) => q.Match(s));
         }
 
-        public static ICypherFluentQuery OptionalMatchEntity<T>(this ICypherFluentQuery query, T entity, MatchOptions options= null)
-           where T : class
+        public static ICypherFluentQuery OptionalMatchEntity<T>(this ICypherFluentQuery query, T entity,
+            MatchOptions options = null)
+            where T : class
         {
             if (options == null)
             {
@@ -43,20 +46,26 @@ namespace Neo4jClient.Extension.Cypher
             return MatchWorker(query, entity, options, (q, s) => q.OptionalMatch(s));
         }
 
-        private static ICypherFluentQuery MatchWorker<T>(this ICypherFluentQuery query, T entity, MatchOptions options, Func<ICypherFluentQuery, string, ICypherFluentQuery> matchFunction) where T : class
+        private static ICypherFluentQuery MatchWorker<T>(this ICypherFluentQuery query, T entity, MatchOptions options,
+            Func<ICypherFluentQuery, string, ICypherFluentQuery> matchFunction) where T : class
         {
             var identifier = entity.EntityParamKey(options.Identifier);
-            var matchCypher = entity.ToCypherString<T, CypherMatchAttribute>(CypherExtensionContext.Create(query), identifier, options.MatchOverride);
+            var matchCypher = entity.ToCypherString<T, CypherMatchAttribute>(CypherExtensionContext.Create(query),
+                identifier, options.MatchOverride);
             var cql = string.Format("{0}({1}){2}", options.PreCql, matchCypher, options.PostCql);
-            dynamic cutdown = entity.CreateDynamic(options.MatchOverride ?? CypherTypeItemHelper.PropertiesForPurpose<T, CypherMatchAttribute>(entity));
+            dynamic cutdown = entity.CreateDynamic(options.MatchOverride ??
+                                                   CypherTypeItemHelper.PropertiesForPurpose<T, CypherMatchAttribute>(
+                                                       entity));
 
             var matchKey = GetMatchParamName(identifier);
 
-            return matchFunction(query,cql)
-                    .WithParam(matchKey, cutdown);
+            return matchFunction(query, cql)
+                .WithParam(matchKey, cutdown);
         }
 
-        public static ICypherFluentQuery CreateEntity<T>(this ICypherFluentQuery query, T entity, string identifier = null, List<CypherProperty> onCreateOverride = null, string preCql = "", string postCql = "") where T : class
+        public static ICypherFluentQuery CreateEntity<T>(this ICypherFluentQuery query, T entity,
+            string identifier = null, List<CypherProperty> onCreateOverride = null, string preCql = "",
+            string postCql = "") where T : class
         {
             var options = new CreateOptions();
 
@@ -68,7 +77,8 @@ namespace Neo4jClient.Extension.Cypher
             return CreateEntity(query, entity, options);
         }
 
-        public static ICypherFluentQuery CreateEntity<T>(this ICypherFluentQuery query, T entity, CreateOptions options) where T : class
+        public static ICypherFluentQuery CreateEntity<T>(this ICypherFluentQuery query, T entity, CreateOptions options)
+            where T : class
         {
             Func<string, string> getFinalCql = intermediateCql => WithPrePostWrap(intermediateCql, options);
 
@@ -77,9 +87,11 @@ namespace Neo4jClient.Extension.Cypher
             return query;
         }
 
-        public static ICypherFluentQuery CreateRelationship<T>(this ICypherFluentQuery query, T entity, CreateOptions options = null) where T : BaseRelationship
+        public static ICypherFluentQuery CreateRelationship<T>(this ICypherFluentQuery query, T entity,
+            CreateOptions options = null) where T : BaseRelationship
         {
-            Func<string, string> getFinalCql = intermediateCql => GetRelationshipCql(entity.FromKey, intermediateCql, entity.ToKey);
+            Func<string, string> getFinalCql = intermediateCql =>
+                GetRelationshipCql(entity.FromKey, intermediateCql, entity.ToKey);
 
             if (options == null)
             {
@@ -91,7 +103,7 @@ namespace Neo4jClient.Extension.Cypher
 
             return query;
         }
-        
+
         private static ICypherFluentQuery CommonCreate<T>(
             this ICypherFluentQuery query
             , T entity
@@ -105,11 +117,16 @@ namespace Neo4jClient.Extension.Cypher
 
             var createProperties = GetCreateProperties(entity);
             var identifier = entity.EntityParamKey(options.Identifier);
-            var intermediateCreateCql = GetMatchWithParam(identifier, entity.EntityLabel(), createProperties.Count > 0 ? identifier : "");
+            var intermediateCreateCql = GetMatchWithParam(identifier, entity.EntityLabel(),
+                createProperties.Count > 0 ? identifier : "");
 
             var createCql = getFinalCql(intermediateCreateCql);
 
-            var dynamicOptions = new CreateDynamicOptions { IgnoreNulls = true }; // working around some buug where null properties are blowing up. don't care on create.
+            var dynamicOptions =
+                new CreateDynamicOptions
+                {
+                    IgnoreNulls = true
+                }; // working around some buug where null properties are blowing up. don't care on create.
             var cutdownEntity = entity.CreateDynamic(createProperties, dynamicOptions);
 
             query = query.Create(createCql);
@@ -122,7 +139,9 @@ namespace Neo4jClient.Extension.Cypher
             return query;
         }
 
-        public static ICypherFluentQuery MergeEntity<T>(this ICypherFluentQuery query, T entity, string paramKey = null, List<CypherProperty> mergeOverride = null, List<CypherProperty> onMatchOverride = null, List<CypherProperty> onCreateOverride = null, string preCql = "", string postCql = "") where T : class
+        public static ICypherFluentQuery MergeEntity<T>(this ICypherFluentQuery query, T entity, string paramKey = null,
+            List<CypherProperty> mergeOverride = null, List<CypherProperty> onMatchOverride = null,
+            List<CypherProperty> onCreateOverride = null, string preCql = "", string postCql = "") where T : class
         {
             paramKey = entity.EntityParamKey(paramKey);
             var context = CypherExtensionContext.Create(query);
@@ -131,7 +150,8 @@ namespace Neo4jClient.Extension.Cypher
             return query.CommonMerge(entity, paramKey, cql, mergeOverride, onMatchOverride, onCreateOverride);
         }
 
-        public static ICypherFluentQuery MergeEntity<T>(this ICypherFluentQuery query, T entity, MergeOptions options) where T : class
+        public static ICypherFluentQuery MergeEntity<T>(this ICypherFluentQuery query, T entity, MergeOptions options)
+            where T : class
         {
             var context = CypherExtensionContext.Create(query);
             string pattern;
@@ -147,18 +167,23 @@ namespace Neo4jClient.Extension.Cypher
             }
             else
             {
-                pattern = entity.ToCypherString<T, CypherMergeAttribute>(context, options.Identifier, options.MergeOverride);
+                pattern = entity.ToCypherString<T, CypherMergeAttribute>(context, options.Identifier,
+                    options.MergeOverride);
             }
             var wrappedPattern = string.Format("{0}({1}){2}", options.PreCql, pattern, options.PostCql);
-            return query.CommonMerge(entity, options.Identifier, wrappedPattern, options.MergeOverride, options.OnMatchOverride, options.OnCreateOverride);
+            return query.CommonMerge(entity, options.Identifier, wrappedPattern, options.MergeOverride,
+                options.OnMatchOverride, options.OnCreateOverride);
         }
 
-        public static ICypherFluentQuery MergeRelationship<T>(this ICypherFluentQuery query, T entity, List<CypherProperty> mergeOverride = null, List<CypherProperty> onMatchOverride = null, List<CypherProperty> onCreateOverride = null) where T : BaseRelationship
+        public static ICypherFluentQuery MergeRelationship<T>(this ICypherFluentQuery query, T entity,
+            List<CypherProperty> mergeOverride = null, List<CypherProperty> onMatchOverride = null,
+            List<CypherProperty> onCreateOverride = null) where T : BaseRelationship
         {
             //Eaxctly the same as a merge entity except the cql is different
             var cql = GetRelationshipCql(
                 entity.FromKey
-                , entity.ToCypherString<T, CypherMergeAttribute>(CypherExtensionContext.Create(query), entity.Key, mergeOverride)
+                , entity.ToCypherString<T, CypherMergeAttribute>(CypherExtensionContext.Create(query), entity.Key,
+                    mergeOverride)
                 , entity.ToKey);
 
             return query.CommonMerge(entity, entity.Key, cql, mergeOverride, onMatchOverride, onCreateOverride);
@@ -173,15 +198,16 @@ namespace Neo4jClient.Extension.Cypher
         }
 
         public static ICypherFluentQuery OptionalMatchRelationship<T>(
-          this ICypherFluentQuery query
-          , T relationship
-          , MatchRelationshipOptions options = null) where T : BaseRelationship
+            this ICypherFluentQuery query
+            , T relationship
+            , MatchRelationshipOptions options = null) where T : BaseRelationship
         {
             if (options == null)
             {
                 options = new MatchRelationshipOptions();
             }
-            return MatchRelationshipWorker(query, relationship, options, (fluentQuery, s) => fluentQuery.OptionalMatch(s));
+            return MatchRelationshipWorker(query, relationship, options,
+                (fluentQuery, s) => fluentQuery.OptionalMatch(s));
         }
 
         private static ICypherFluentQuery MatchRelationshipWorker<T>(
@@ -190,16 +216,19 @@ namespace Neo4jClient.Extension.Cypher
             , MatchRelationshipOptions options
             , Func<ICypherFluentQuery, string, ICypherFluentQuery> matchFunction) where T : BaseRelationship
         {
-            var matchProperties = options.MatchOverride ?? CypherTypeItemHelper.PropertiesForPurpose<T, CypherMatchAttribute>(relationship);
+            var matchProperties = options.MatchOverride ??
+                                  CypherTypeItemHelper.PropertiesForPurpose<T, CypherMatchAttribute>(relationship);
             var cql = GetRelationshipCql(
                 relationship.FromKey
-                , relationship.ToCypherString<T, CypherMatchAttribute>(CypherExtensionContext.Create(query), relationship.Key, matchProperties)
+                , relationship.ToCypherString<T, CypherMatchAttribute>(CypherExtensionContext.Create(query),
+                    relationship.Key, matchProperties)
                 , relationship.ToKey);
 
-            return matchFunction(query,cql);
+            return matchFunction(query, cql);
         }
 
-        public static ICypherFluentQuery MatchRelationship<T>(this ICypherFluentQuery query, T relationship, List<CypherProperty> matchOverride = null) where T : BaseRelationship
+        public static ICypherFluentQuery MatchRelationship<T>(this ICypherFluentQuery query, T relationship,
+            List<CypherProperty> matchOverride = null) where T : BaseRelationship
         {
             var options = new MatchRelationshipOptions();
             options.MatchOverride = matchOverride;
@@ -216,9 +245,11 @@ namespace Neo4jClient.Extension.Cypher
             , List<CypherProperty> onCreateOverride = null) where T : class
         {
             //A merge requires the properties of both merge, create and match in the cutdown object
-            var mergeProperties = mergeOverride ?? CypherTypeItemHelper.PropertiesForPurpose<T, CypherMergeAttribute>(entity);
+            var mergeProperties =
+                mergeOverride ?? CypherTypeItemHelper.PropertiesForPurpose<T, CypherMergeAttribute>(entity);
             var createProperties = GetCreateProperties(entity, onCreateOverride);
-            var matchProperties = onMatchOverride ?? CypherTypeItemHelper.PropertiesForPurpose<T, CypherMergeOnMatchAttribute>(entity);
+            var matchProperties = onMatchOverride ??
+                                  CypherTypeItemHelper.PropertiesForPurpose<T, CypherMergeOnMatchAttribute>(entity);
 
             dynamic mergeObjectParam = entity.CreateDynamic(mergeProperties);
             var matchParamName = GetMatchParamName(key);
@@ -245,7 +276,7 @@ namespace Neo4jClient.Extension.Cypher
                 query = query.OnCreate().Set(GetSetWithParamCql(key, createParamName));
                 query = query.WithParam(createParamName, createObjectParam);
             }
-            
+
             return query;
         }
 
@@ -258,7 +289,7 @@ namespace Neo4jClient.Extension.Cypher
         {
             var regex = new Regex("\\\"([^(\\\")\"]+)\\\":", RegexOptions.Multiline);
             var s = regex.Replace(cypherText, "$1:");
-            s = s.Replace("ON MATCH\r\nSET", "ON MATCH SET");   // this is more readable
+            s = s.Replace("ON MATCH\r\nSET", "ON MATCH SET"); // this is more readable
             s = s.Replace("ON CREATE\r\nSET", "ON CREATE SET");
             return s;
         }

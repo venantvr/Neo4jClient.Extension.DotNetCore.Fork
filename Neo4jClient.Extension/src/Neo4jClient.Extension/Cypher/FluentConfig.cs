@@ -23,18 +23,20 @@ namespace Neo4jClient.Extension.Cypher
 
         public static FluentConfig Config(CypherExtensionContext context = null)
         {
-            return new FluentConfig(context??new CypherExtensionContext());
+            return new FluentConfig(context ?? new CypherExtensionContext());
         }
 
         public ConfigWith<T> With<T>(string label = null)
         {
             return new ConfigWith<T>(_context, label);
-        }  
+        }
     }
 
     public class ConfigWith<T>
     {
-        private readonly ConcurrentBag<Tuple<Type, CypherProperty>> _properties = new ConcurrentBag<Tuple<Type, CypherProperty>>();
+        private readonly ConcurrentBag<Tuple<Type, CypherProperty>> _properties =
+            new ConcurrentBag<Tuple<Type, CypherProperty>>();
+
         private readonly CypherExtensionContext _context;
         private readonly string _label;
 
@@ -46,9 +48,11 @@ namespace Neo4jClient.Extension.Cypher
 
         private ConfigWith<T> Config<TP>(Expression<Func<T, TP>> property, Type attribute)
         {
-            var memberExpression = property.Body as MemberExpression ?? ((UnaryExpression) property.Body).Operand as MemberExpression;
-            var name = memberExpression == null ? null : memberExpression.Member.Name; 
-            _properties.Add(new Tuple<Type, CypherProperty>(attribute, new CypherProperty {TypeName = name, JsonName = name.ApplyCasing(_context)}));
+            var memberExpression = property.Body as MemberExpression ??
+                                   ((UnaryExpression) property.Body).Operand as MemberExpression;
+            var name = memberExpression == null ? null : memberExpression.Member.Name;
+            _properties.Add(new Tuple<Type, CypherProperty>(attribute,
+                new CypherProperty {TypeName = name, JsonName = name.ApplyCasing(_context)}));
             return this;
         }
 
@@ -57,11 +61,11 @@ namespace Neo4jClient.Extension.Cypher
             return Config(property, typeof(CypherMatchAttribute));
         }
 
-        public ConfigWith<T> Merge<TP>(Expression<Func<T,TP>> property)
+        public ConfigWith<T> Merge<TP>(Expression<Func<T, TP>> property)
         {
-            return Config(property, typeof (CypherMergeAttribute));
+            return Config(property, typeof(CypherMergeAttribute));
         }
-        
+
         public ConfigWith<T> MergeOnCreate<TP>(Expression<Func<T, TP>> property)
         {
             return Config(property, typeof(CypherMergeOnCreateAttribute));
@@ -84,22 +88,22 @@ namespace Neo4jClient.Extension.Cypher
                 .Select(x => new Tuple<CypherTypeItem, List<CypherProperty>>(new CypherTypeItem()
                 {
                     AttributeType = x.Key,
-                    Type = typeof (T)
+                    Type = typeof(T)
                 }, x.Select(y => y.Item2).Distinct(new CypherPropertyComparer()).ToList())).ToList();
-        
-                returnValue.ForEach(x => CypherExtension.AddConfigProperties(x.Item1, x.Item2));
+
+            returnValue.ForEach(x => CypherExtension.AddConfigProperties(x.Item1, x.Item2));
             //set the label
             if (!string.IsNullOrWhiteSpace(_label))
             {
-                CypherExtension.SetConfigLabel(typeof (T), _label);
+                CypherExtension.SetConfigLabel(typeof(T), _label);
             }
             return returnValue;
         }
 
-        public ConfigWith<TN> With<TN>(string label=null)
+        public ConfigWith<TN> With<TN>(string label = null)
         {
             Set();
             return new ConfigWith<TN>(_context, label);
-        }  
+        }
     }
 }

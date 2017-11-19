@@ -12,6 +12,7 @@ namespace Neo4jClient.Extension.Cypher
         {
             CypherTypeItemHelper.AddPropertyUsage(type, properties);
         }
+
         internal static void SetConfigLabel(Type type, string label)
         {
             if (EntityLabelCache.ContainsKey(type))

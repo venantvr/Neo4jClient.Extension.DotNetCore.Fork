@@ -14,7 +14,8 @@ namespace Neo4jClient.Extension.Cypher
 
     public static class MatchRelationshipOptionsExtensions
     {
-        public static MatchRelationshipOptions WithProperties(this MatchRelationshipOptions target, List<CypherProperty> propertyOverride)
+        public static MatchRelationshipOptions WithProperties(this MatchRelationshipOptions target,
+            List<CypherProperty> propertyOverride)
         {
             target.MatchOverride = propertyOverride;
             return target;
