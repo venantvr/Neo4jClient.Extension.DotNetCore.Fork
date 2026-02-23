@@ -11,6 +11,4 @@ Fork de Neo4jClient.Extension porte sur .NET Core : extensions Cypher fluent, ma
 
 ## Stack
 
-- C# / .NET Core
-- Neo4jClient
-- Cypher
+[![Stack](https://skillicons.dev/icons?i=dotnet,graphql,cs&theme=dark)](https://skillicons.dev)
